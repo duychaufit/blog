@@ -1,0 +1,42 @@
+= form_tag(list_users_path, :method => "get", class: "search_details") do 
+  table
+    tr
+      th user id
+      td= text_field_tag :user_id, params[:user_id], :class => "text"
+      th name11
+      td= text_field_tag :name, params[:name], :class => "text"
+    tr
+      th age
+      td= text_field_tag :age, params[:age], :class => "text"
+      th first name
+      td= text_field_tag :firstname, params[:firstname], :class => "text"
+    tr
+      th  address
+      td= text_field_tag :address, params[:address], :class => "text"
+      th
+      td= hidden_field_tag :search, true
+  .btn-area
+    = submit_tag "search", :name => nil, :class => "btn function-btn"
+
+table.member_table
+  thead
+    tr
+      th name
+      th age
+      th first name
+      th full_name
+      th address
+      th user id
+  tbody
+    - @users.each do |user|
+      tr
+        td = user.name
+        td = user.age
+        td = user.firstname
+        - if user.member.present?
+          td = user.member.full_name
+          td = user.member.address
+          td = user.member.user_id
+.page.clear
+  = will_paginate @users, :previous_label => '« 前のページ', :next_label => '次のページ »'
+      
