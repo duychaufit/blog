@@ -1,9 +1,10 @@
+h1 User search
 = form_tag(list_users_path, :method => "get", class: "search_details") do 
   table
     tr
       th user id
       td= text_field_tag :user_id, params[:user_id], :class => "text"
-      th name11
+      th name
       td= text_field_tag :name, params[:name], :class => "text"
     tr
       th age
@@ -38,5 +39,5 @@ table.member_table
           td = user.member.address
           td = user.member.user_id
 .page.clear
-  = will_paginate @users, :previous_label => '« 前のページ', :next_label => '次のページ »'
+  = will_paginate @users, :previous_label => '« previous', :next_label => 'next »'
       

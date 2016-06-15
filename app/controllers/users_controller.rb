@@ -6,8 +6,8 @@ class UsersController < ApplicationController
         redirect_to list_users_path
         return
       end
-      users = users && User.search_by_name(params[:name]) if params[:name].present? 
-      users = users && User.search_by_address(params[:address]) if params[:address].present?
+      # users = users + User.search_by_name(params[:name]) if params[:name].present? 
+      users = User.search(params[:name], params[:address])
     end
   	@users = users.paginate(:page => params[:page], :per_page => 10)
   	# redirect_to list_users_path if params[:page].to_i > @users.total_pages
@@ -20,4 +20,11 @@ class UsersController < ApplicationController
     return false if params[:address] and params[:address].length > 255
     true
   end
+
+
+
+  def detail
+  end
+
+
 end
