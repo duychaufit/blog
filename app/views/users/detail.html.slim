@@ -1,0 +1,25 @@
+h1 Edit user
+= simple_form_for @user, url: detail_users_path, method: :post do |f|
+  table#detail
+    tr
+      th ID
+      td = @user.id
+    tr
+      th Name
+      td= f.input :name
+    tr
+      th Age
+      td= f.input :age
+
+    tr
+      th Firstname
+      td= f.input :firstname
+  ul= f.simple_fields_for :members do |m|
+    li 
+      label Member Full name
+      = m.input :full_name, as: :string,:label => false, :input_html => { class: 'text '}
+    li
+      label Member Address
+      = m.input :address, as: :string,:label => false
+  .btn-area
+    = submit_tag "save", :name => 'btnSave', :class => "btn function-btn"

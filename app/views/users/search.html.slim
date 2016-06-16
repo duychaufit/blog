@@ -30,14 +30,16 @@ table.member_table
       th user id
   tbody
     - @users.each do |user|
-      tr
+      tr.detail data-href=( detail_users_path (user))
+       
         td = user.name
         td = user.age
         td = user.firstname
-        - if user.member.present?
-          td = user.member.full_name
-          td = user.member.address
-          td = user.member.user_id
-.page.clear
-  = will_paginate @users, :previous_label => '« previous', :next_label => 'next »'
+        - if user.members.present?
+          - user.members.each do | member|
+            td = member.full_name
+            td = member.address
+            td = member.user_id
+/ .page.clear
+/   = will_paginate @users, :previous_label => '« previous', :next_label => 'next »'
       

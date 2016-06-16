@@ -5,6 +5,8 @@ Rails.application.routes.draw do
   # You can have the root of your site routed with "root"
   # root 'user#search'
   resources :users do
+    get '/detail/:id' => 'users#detail', on: :collection, as: 'detail'
+    post '/detail/:id' => 'users#update', on: :collection
     get 'list' => 'users#search', on: :collection
   end
   resources :members

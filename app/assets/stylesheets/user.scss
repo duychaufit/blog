@@ -1,3 +1,12 @@
 // Place all the styles related to the User controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+table.member_table tr:hover {
+	background-color: #ffff99;
+	cursor: pointer;
+}
+
+.btn-area input{
+
+}
