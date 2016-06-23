@@ -2,7 +2,7 @@ class UsersController < ApplicationController
   before_action :set_user, only: [:detail, :update]
 
   def search
-  	users = User.joins(:members).includes(:members).all.order('name DESC')
+  	users = User.all.order('name DESC')
   	if params[:search] == "true"
       if !check_maxlength(params)
         redirect_to list_users_path
@@ -12,7 +12,7 @@ class UsersController < ApplicationController
       users = users.search_by_address(params[:address]) if params[:address].present? 
     end
   	@users = users.paginate(:page => params[:page], :per_page => 10)
-  	redirect_to list_users_path if params[:page].to_i > @users.total_pages
+  # 	redirect_to list_users_path
   end
   def check_maxlength(params)
     return false if params[:id] and params[:id].length > 9

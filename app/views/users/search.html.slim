@@ -40,6 +40,6 @@ table.member_table
             td = member.full_name
             td = member.address
             td = member.user_id
-/ .page.clear
-/   = will_paginate @users, :previous_label => '« previous', :next_label => 'next »'
-      
+.page.clear
+  = will_paginate @users, :previous_label => '« previous', :next_label => 'next »'
+= console
