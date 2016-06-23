@@ -12,7 +12,9 @@ Rails.application.routes.draw do
   
   resources :members
   
-  resources :patients
+  resources :patients, :only => [:index]
+  resources :physicians, :only => [:index]
+  
 
 
  # = simple_form_for(@user, html: { class: 'form-horizontal' }) do |form|

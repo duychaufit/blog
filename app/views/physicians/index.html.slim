@@ -1,0 +1,25 @@
+h1 Physicians list
+table.table.table-striped
+  thead
+    tr
+      th name
+      th appointment content
+      
+  tbody
+    - @physicians.each do |physician|
+      tr
+        td = physician.name
+        - if physician.appointments.present?
+          td
+            - physician.appointments.each do |appointment|
+              p
+                span.appointment-date 
+                  i = appointment.appointment_date.strftime("%a, %d/%m/%Y")
+                span = "with"
+                span.patient-name
+                  b = appointment.patient.name
+
+        
+.page.clear
+  = will_paginate @physicians, :previous_label => '« previous', :next_label => 'next »'
+- console
