@@ -1,0 +1,36 @@
+h1 Patients list
+table.table.table-striped
+  thead
+    tr
+      th name
+      th birthday
+      th address
+      th physician_id
+      th patient_id
+      th physicians name - date
+      
+  tbody
+    - @patients.each do |patient|
+      tr.detail
+        td = patient.name
+        td = patient.birthday.strftime("%b %d, %Y")
+        td = patient.address
+        - if patient.appointments.present?
+          td 
+            - patient.appointments.each do |appointment|
+              = "#{ appointment.physician_id } "
+          td = patient.appointments.first.patient_id
+          
+          td
+            - patient.appointments.each do |appointment|
+              p
+                span.physician-name 
+                  b = appointment.physician.name
+                span = "on"
+                span.appointment-date 
+                  i = appointment.appointment_date.strftime("%a, %m/%d/%Y")
+
+        
+.page.clear
+  = will_paginate @patients, :previous_label => '« previous', :next_label => 'next »'
+- console

@@ -3,13 +3,16 @@ Rails.application.routes.draw do
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
-  root to: 'users#search'
+  root to: 'patients#index'
   resources :users do
     get '/detail/:id' => 'users#detail', on: :collection, as: 'detail'
     post '/detail/:id' => 'users#update', on: :collection
     get '/list' => 'users#search', on: :collection
   end
+  
   resources :members
+  
+  resources :patients
 
 
  # = simple_form_for(@user, html: { class: 'form-horizontal' }) do |form|
