@@ -1,25 +1,33 @@
-h1 Edit user
-= simple_form_for @user, url: detail_users_path, method: :post do |f|
-  table#detail
-    tr
-      th ID
-      td = @user.id
-    tr
-      th Name
-      td= f.input :name
-    tr
-      th Age
-      td= f.input :age
-
-    tr
-      th Firstname
-      td= f.input :firstname
-  ul= f.simple_fields_for :members do |m|
-    li 
-      label Member Full name
-      = m.input :full_name, as: :string,:label => false, :input_html => { class: 'text '}
-    li
-      label Member Address
-      = m.input :address, as: :string,:label => false
-  .btn-area
-    = submit_tag "save", :name => 'btnSave', :class => "btn function-btn"
+div.container
+  h1 Edit user
+  = simple_form_for @user, url: detail_users_path, method: :post do |f|
+    div#detail.col-md-6
+      div.row
+        label ID
+        span = @user.id
+      div.row
+        label Name
+        = f.input :name, :class => "form-control", :label => false
+      div.row
+        label Age
+        = f.input :age, :class => "form-control", :label => false
+    
+      div.row
+        label Firstname
+        = f.input :firstname, :class => "form-control", :label => false
+    div.clear
+    div.members-list  
+      = f.simple_fields_for :members do |m|
+        div.col-md-4
+          table.table-member-item.table.table-bordered
+            tr
+              td
+                label Member Full name
+                = m.input :full_name, as: :string,:label => false, :input_html => { class: 'text '}
+            tr
+              td
+                label Member Address
+                = m.input :address, as: :string,:label => false
+    div.clear
+    .btn-area
+      = submit_tag "save", :name => 'btnSave', :class => "btn btn-primary"

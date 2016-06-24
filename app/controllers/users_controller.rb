@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: [:detail, :update]
+  before_action :set_user, only: [:show, :update]
 
   def search
   	users = User.all.order('name DESC')
@@ -58,6 +58,7 @@ class UsersController < ApplicationController
 
     def user_params
       params.require(:user).permit(
+          :id,
           :firstname, :age, :name,
           members_attributes: [:user_id, :id, :address, :full_name]
           )
