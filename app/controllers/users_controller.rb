@@ -8,8 +8,15 @@ class UsersController < ApplicationController
         redirect_to list_users_path
         return
       end
-      users = users.search_by_name(params[:name]) if params[:name].present? 
-      users = users.search_by_address(params[:address]) if params[:address].present? 
+      users = users.search_by_name(params[:name]) if params[:name].present?
+      users = users.search_by_address(params[:address]) if params[:address].present?
+      users = users.search_by_id(params[:user_id]) if params[:user_id].present?
+      users = users.search_by_firstname(params[:firstname]) if params[:firstname].present?
+      users = users.search_by_age(params[:age]) if params[:age].present?
+      
+      #member full_name
+      users = users.search_by_fullname(params[:full_name]) if params[:full_name].present?
+      
     end
   	@users = users.paginate(:page => params[:page], :per_page => 10)
   # 	redirect_to list_users_path
@@ -25,7 +32,7 @@ class UsersController < ApplicationController
 
 
 
-  def detail
+  def show
   end
 
   def update
@@ -38,7 +45,7 @@ class UsersController < ApplicationController
         redirect_to detail_users_path(@user)  
       else
         @user.errors
-        render 'detail'
+        render 'show'
       end
     end
   end

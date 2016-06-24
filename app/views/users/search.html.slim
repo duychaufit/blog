@@ -1,45 +1,52 @@
-h1 User search
-= form_tag(list_users_path, :method => "get", class: "search_details") do 
-  table
-    tr
-      th user id
-      td= text_field_tag :user_id, params[:user_id], :class => "text"
-      th name
-      td= text_field_tag :name, params[:name], :class => "text"
-    tr
-      th age
-      td= text_field_tag :age, params[:age], :class => "text"
-      th first name
-      td= text_field_tag :firstname, params[:firstname], :class => "text"
-    tr
-      th  address
-      td= text_field_tag :address, params[:address], :class => "text"
-      th
-      td= hidden_field_tag :search, true
-  .btn-area
-    = submit_tag "search", :name => nil, :class => "btn function-btn"
-
-table.member_table
-  thead
-    tr
-      th name
-      th age
-      th first name
-      th full_name
-      th address
-      th user id
-  tbody
-    - @users.each do |user|
-      tr.detail data-href=( detail_users_path (user))
-       
-        td = user.name
-        td = user.age
-        td = user.firstname
-        - if user.members.present?
-          - user.members.each do | member|
-            td = member.full_name
-            td = member.address
-            td = member.user_id
-.page.clear
-  = will_paginate @users, :previous_label => '« previous', :next_label => 'next »'
-= console
+div.container
+  h1 User search
+  = form_tag(list_users_path, :method => "get", class: "search_details") do 
+    div.row
+      div.col-md-6
+        label user id
+        = text_field_tag :user_id, params[:user_id], :class => "form-control"
+      div.col-md-6
+        label name
+        = text_field_tag :name, params[:name], :class => "form-control"
+    div.row
+      div.col-md-6
+        label age
+        = text_field_tag :age, params[:age], :class => "form-control"
+      div.col-md-6
+        label first name
+        = text_field_tag :firstname, params[:firstname], :class => "form-control"
+    div.row
+      div.col-md-6
+        label  address
+        = text_field_tag :address, params[:address], :class => "form-control"
+    div.clear
+    div.row
+      div.col-md-6
+        div.center.center-block 
+          = hidden_field_tag :search, true
+          p = submit_tag "search", :name => nil, :class => "btn btn-block btn-primary"
+  
+  table.table.table-striped.table-hover#table-users
+    thead
+      tr
+        th name
+        th age
+        th first name
+        th full_name
+        th address
+        th user id
+    tbody
+      - @users.each do |user|
+        tr.detail data-href=( detail_users_path (user))
+         
+          td = user.name
+          td = user.age
+          td = user.firstname
+          - if user.members.present?
+            - user.members.each do | member|
+              td = member.full_name
+              td = member.address
+              td = member.user_id
+  .page.clear
+    = will_paginate @users, :previous_label => '« previous', :next_label => 'next »'
+  = console
