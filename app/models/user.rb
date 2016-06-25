@@ -1,5 +1,9 @@
 class User < ActiveRecord::Base
   has_many :members
+  
+  #--- Validations ---#
+  validates :name, :age, presence: true
+  validates :age, numericality: { only_integer: true, :greater_than => 18}
 
   def self.search_by_name(name)
   	where("name like ?", "%#{name}%")
