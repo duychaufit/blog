@@ -22,7 +22,7 @@ jobs:
 
       - uses: actions/setup-ruby@v1
         with:
-          ruby-version: 2.5
+          ruby-version: 3.1.1
 
       - name: Bundle install
         run: |
