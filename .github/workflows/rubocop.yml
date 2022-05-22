@@ -18,3 +18,4 @@ jobs:
           rubocop_extensions: rubocop-rails:gemfile rubocop-rspec:gemfile
           github_token: ${{ secrets.github_token }}
           reporter: github-pr-review # Default is github-pr-check
+          workdir: "./lib"
